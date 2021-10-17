@@ -1,0 +1,7 @@
+data: https://drive.google.com/drive/u/0/folders/11zIKjH8RbHtsDFcQA72yADlNlyWQQnyW
+
+artifacts:
+  ARTIFACTS_DIR: artifacts
+  DATA_DIR: data
+  data_path_train: train
+  data_path_val: val
