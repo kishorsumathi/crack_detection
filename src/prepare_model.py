@@ -18,7 +18,7 @@ def prepare_base_model(config_path,params_path):
     base_model_dir=config["artifacts"]["BASE_MODEL_DIR"]
     base_model_name=config["artifacts"]["BASE_MODEL_NAME"]
     base_model_dir_path=os.path.join(artifacts_dir,base_model_dir)
-    create_directory(base_model_dir_path)
+    create_directory([base_model_dir_path])
     base_model_path=os.path.join(base_model_dir_path,base_model_name)
     model=efficientnetb3(input_shape=(224,224,3),model_path=base_model_path)
 
