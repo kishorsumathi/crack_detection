@@ -1,0 +1,116 @@
+schema: '2.0'
+stages:
+  split_data:
+    cmd: python src/load_dataset.py
+    deps:
+    - path: config/config.yaml
+      md5: 89f7f6e910c70cbdc9e44bac6042ba6f
+      size: 344
+    - path: data/
+      md5: b41f0bb0d2b4ed964cb5799cafc37d99.dir
+      size: 9809482
+      nfiles: 1996
+    - path: src/load_dataset.py
+      md5: 59b42b6403e412c147a7621cad22e0f9
+      size: 1282
+    - path: src/utils/all_utils.py
+      md5: ae1b836edb6661dec4efbd24dc05fbc5
+      size: 445
+    outs:
+    - path: artifacts/data/test/with_crack
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+    - path: artifacts/data/test/without_crack
+      md5: 0c6539bfb83dc050c8d91d7967640586.dir
+      size: 4573
+      nfiles: 1
+    - path: artifacts/data/train/with_crack
+      md5: 08cd39b6e589f8c8c66909098766fcb4.dir
+      size: 4359752
+      nfiles: 808
+    - path: artifacts/data/train/without_crack
+      md5: 1c093501e91e2eeadf47b66a83482178.dir
+      size: 3515253
+      nfiles: 788
+    - path: artifacts/data/val/with_crack
+      md5: 4cf7eb1b0f2ff6bb2555128e8b23bb73.dir
+      size: 1106826
+      nfiles: 202
+    - path: artifacts/data/val/without_crack
+      md5: c6d15f1333f6af0f22352d1324aa575c.dir
+      size: 823078
+      nfiles: 197
+  model_train:
+    cmd: python src/model_train.py
+    deps:
+    - path: artifacts/base_model/updated_efficientdetb3_base_model.h5
+      md5: 5fe96f882f4d5da434d7d9a824e395f7
+      size: 44215888
+    - path: artifacts/data
+      md5: 62928afe9730b6d3deda67695e331333.dir
+      size: 9809482
+      nfiles: 1996
+    - path: artifacts/data/test/with_crack
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+    - path: artifacts/data/test/without_crack
+      md5: 0c6539bfb83dc050c8d91d7967640586.dir
+      size: 4573
+      nfiles: 1
+    - path: artifacts/data/train/with_crack
+      md5: 08cd39b6e589f8c8c66909098766fcb4.dir
+      size: 4359752
+      nfiles: 808
+    - path: artifacts/data/train/without_crack
+      md5: 1c093501e91e2eeadf47b66a83482178.dir
+      size: 3515253
+      nfiles: 788
+    - path: artifacts/data/val/with_crack
+      md5: 4cf7eb1b0f2ff6bb2555128e8b23bb73.dir
+      size: 1106826
+      nfiles: 202
+    - path: config/config.yaml
+      md5: 89f7f6e910c70cbdc9e44bac6042ba6f
+      size: 344
+    - path: params.yaml
+      md5: f4f75d8f84543a0dcac46ffb41b766e7
+      size: 88
+    - path: src/model_train.py
+      md5: 297c1f4ddf16321f8911cb0932e3b3ad
+      size: 3673
+    - path: src/utils/all_utils.py
+      md5: ae1b836edb6661dec4efbd24dc05fbc5
+      size: 445
+    outs:
+    - path: artifacts/model_ckpt
+      md5: 5727c3822f096e728ebd401761aecc39.dir
+      size: 44275784
+      nfiles: 1
+    - path: logs/fit/
+      md5: c0b63e27b58d52c58752384467cca451.dir
+      size: 1721341
+      nfiles: 11
+  prepare_model:
+    cmd: python src/prepare_model.py
+    deps:
+    - path: config/config.yaml
+      md5: 89f7f6e910c70cbdc9e44bac6042ba6f
+      size: 344
+    - path: src/prepare_model.py
+      md5: baf094f4030b1fd859fb365c03ed6d97
+      size: 2256
+    - path: src/utils/all_utils.py
+      md5: ae1b836edb6661dec4efbd24dc05fbc5
+      size: 445
+    - path: src/utils/model.py
+      md5: 3035b3661169da75dee61bf90832c997
+      size: 1636
+    outs:
+    - path: artifacts/base_model/efficientnetb3.h5
+      md5: 9c83f5c52a893b0c9afcc241a842aa8f
+      size: 44169640
+    - path: artifacts/base_model/updated_efficientdetb3_base_model.h5
+      md5: 5fe96f882f4d5da434d7d9a824e395f7
+      size: 44215888

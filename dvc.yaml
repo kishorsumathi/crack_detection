@@ -2,19 +2,18 @@ stages:
     split_data:  
       cmd: python src/load_dataset.py
       deps:
-        - src/load_dateset.py
+        - src/load_dataset.py
         - src/utils/all_utils.py
         - config/config.yaml
-        - data/with_crack
-        - data/without_crack
+        - data/
 
       outs:
         - artifacts/data/test/with_crack
         - artifacts/data/test/without_crack
         - artifacts/data/train/with_crack
-        - artifacts/data/train/without_data
+        - artifacts/data/train/without_crack
         - artifacts/data/val/with_crack
-        - artifacts/data/val/without_data
+        - artifacts/data/val/without_crack
 
 
     prepare_model:
@@ -26,7 +25,7 @@ stages:
         - src/utils/model.py
       outs:
         - artifacts/base_model/efficientnetb3.h5
-        - artifacts/base_model/artifacts/base_model/updated_efficientdetb3_base_model.h5
+        - artifacts/base_model/updated_efficientdetb3_base_model.h5
 
     model_train:
       cmd: python src/model_train.py
@@ -34,7 +33,7 @@ stages:
         - artifacts/data/test/with_crack
         - artifacts/data/test/without_crack
         - artifacts/data/train/with_crack
-        - artifacts/data/train/without_data
+        - artifacts/data/train/without_crack
         - artifacts/data/val/with_crack
         - artifacts/data
         - src/model_train.py
